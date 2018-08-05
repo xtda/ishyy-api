@@ -39,6 +39,8 @@ module StreamElements
       @from_name.take_points(@amount)
       return_message = "#{@from_name.name} gave #{@amount} potatoes to #{@to_name.name}!, their new balance is #{to_new_balance}!"
       StreamElementsWrapper::Bot.new.message(return_message)
+      PlayerAudit.log(@from_name.name, 'GIVE', "Gave #{@amount} potatoes to #{@to_name.name}")
+      PlayerAudit.log(@to_name.name, 'GIVE', "Obtained #{@amount} potatoes to #{@from_name.name}")
       return_message
     end
 
