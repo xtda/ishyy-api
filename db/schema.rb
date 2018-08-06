@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_05_094144) do
+ActiveRecord::Schema.define(version: 2018_08_06_110729) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -27,10 +27,20 @@ ActiveRecord::Schema.define(version: 2018_08_05_094144) do
     t.string "ref"
   end
 
+  create_table "mayors", force: :cascade do |t|
+    t.string "current_mayor", default: "xtda616"
+    t.bigint "current_funds", default: 250000
+    t.integer "current_tax", limit: 2, default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "players", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "mayor_vote"
+    t.datetime "mayor_last_voted", default: "2018-08-03 11:16:23"
   end
 
 end

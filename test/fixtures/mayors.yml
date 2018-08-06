@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  current_mayor: MyString
+  current_funds: 1
+  current_tax: 1
+
+two:
+  current_mayor: MyString
+  current_funds: 1
+  current_tax: 1

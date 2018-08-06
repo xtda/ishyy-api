@@ -1,0 +1,2 @@
+class Mayor < ApplicationRecord
+end

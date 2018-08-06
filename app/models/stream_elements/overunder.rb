@@ -68,6 +68,7 @@ module StreamElements
     def parse_amount(amount)
       return @player_points if amount.eql?('all')
       return amount.to_i * 1000 if amount[-1].casecmp?('k')
+      return amount.to_i * 1_000_000 if amount[-1].casecmp?('m')
       amount.to_i
     end
   end
