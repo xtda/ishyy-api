@@ -77,6 +77,64 @@ module StreamElements
       StreamElementsWrapper::Bot.new.message(message)
       message
     end
-  
+
+    def say_current_funds
+      message = "Current mayor budget: #{@mayor.current_funds} potatoes (Tax rate: #{@mayor.current_tax}%)"
+      StreamElementsWrapper::Bot.new.message(message)
+      message
+    end
+
+    def transfer_funds(to, amount)
+      return false unless mayor?
+      amount = parse_amount(amount)
+      if amount.to_i <= 0
+        message = "You can't give 0 potatoes"
+        StreamElementsWrapper::Bot.new.message(message)
+        return false
+      end
+      if amount.to_i > @mayor.current_funds
+        message = 'Not enough potatoes in the mayor funds'
+        StreamElementsWrapper::Bot.new.message(message)
+        return false
+      end
+      to = StreamElementsWrapper::Points.new(parse_name(to))
+      to_points = to.points
+      unless to_points
+        message = "User not found #{@mayor.current_mayor}"
+        StreamElementsWrapper::Bot.new.message(message)
+        return false
+      end
+      to.give_points(amount)
+      @mayor.current_funds -= amount.to_i
+      return 'transfer failed' unless @mayor.save
+      message = "The mayor gave #{to.name} #{amount} potatoes, The new balance is: #{@mayor.current_funds} potatoes"
+      MayorAudit.log(current_mayor,
+                     'TRANSFER',
+                     "TRN-#{current_mayor}-#{SecureRandom.random_number(1..1_000_000_000)}",
+                     "Transferred #{to.name} #{amount} potatoes")
+      PlayerAudit.log(to.name, 'MAYORTRANSFER', "Received #{amount} potatoes from #{current_mayor}")
+      StreamElementsWrapper::Bot.new.message(message)
+      message
+    end
+
+    def add_funds(amount)
+      @mayor.current_funds += parse_amount(amount)
+      return true if @mayor.save
+      false
+    end
+
+    def take_funds(amount)
+      return false unless parse_amount(amount) < @mayor.current_funds
+      @mayor.current_funds -= parse_amount(amount)
+      return true if @mayor.save
+      false
+    end
+
+    def parse_amount(amount)
+      return @mayor.current_funds if amount.eql?('all')
+      return amount.to_i * 1000 if amount[-1].casecmp?('k')
+      return amount.to_i * 1_000_000 if amount[-1].casecmp?('m')
+      amount.to_i
+    end
   end
 end

@@ -15,10 +15,3 @@ module Api
     end
   end
 end
-
-#PLAYER | XTDA616 | OVERUNDER | WIN BALANCED INCREASED BY 500 POTATOES  
-
-#MAYOR | XTDA616 | TRANSFER | GAVE ISHYY 5000 POTATOES 
-#type | name | method | details
-
-#xtda616 | fine | fined 6000 potatoes for speeding by trooper fizz
