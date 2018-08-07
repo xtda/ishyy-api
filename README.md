@@ -1,24 +1,5 @@
-# README
+# Ishyy-API
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+API for chat roleplay system for [Ishyy's twitch channel](https://www.twitch.tv/ishyy)
+Paired with [Ishyy-Bot](https://github.com/xtda/ishyy-bot)
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
