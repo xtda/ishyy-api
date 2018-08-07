@@ -8,7 +8,8 @@ module Api
 
             job = StreamElements::JobSystem.new(params[:player],
                                                 params[:job]).sign_on
-            success('signed on', 200)
+            return success('signed on', 200) if job
+            error('broken', 422)
           end
         end
       end

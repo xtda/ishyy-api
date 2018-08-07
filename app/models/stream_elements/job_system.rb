@@ -5,7 +5,6 @@ module StreamElements
       @player ||= Player.find_or_create_by(name: parse_name(player))
       @player_streamelements = StreamElementsWrapper::Points.new(@player.name)
       @job_code = job_code
-      #@mayor = Mayor.first
     end
 
     def sign_on
@@ -25,8 +24,33 @@ module StreamElements
       message
     end
 
+    def bonus(bonus)
+      job = Job.find_by(code: @job_code)
+      job.mayor_bonus = bonus
+      return true if job.save
+      false
+    end
+
+    def show_bonus
+      message = ''
+      a = Tempjob.all.pluck(:code, :mayor_bonus)
+      a.each do |job, bonus|
+        message += "Job: #{job} #{bonus} | "
+      end
+      message = message[0...-3]
+      StreamElementsWrapper::Bot.new.message(message)
+      message
+    end
+
     def attempt_job
       return false unless @player.tempjob
+      unless @player.temp_job_last_claimed < Time.now
+        time_until = ((@player.temp_job_last_claimed - Time.now) / 60).to_i
+        message = "You can't claim for another #{time_until} minutes #{@player.name}"
+        StreamElementsWrapper::Bot.new.message(message)
+        return false
+      end
+
       total_pay = @player.tempjob.total_pay
 
       unless @player.tempjob.job_successful
@@ -45,7 +69,8 @@ module StreamElements
       end
       message = @player.tempjob.say_response(total_pay)
       @player_streamelements.give_points(total_pay)
-      @player.temp_job_last_claimed = Time.now
+      time = rand(4...10)
+      @player.temp_job_last_claimed = time.mintues.from_now
       @player.save
       StreamElementsWrapper::Bot.new.message(message)
       'job passed'

@@ -2,7 +2,6 @@ class TowJob < Tempjob
   has_many :tempjobresponses, foreign_key: 'tempjob_id'
   
   def say_response(total_pay)
-    puts "say response called on tow"
     tow_type_response = tempjobresponses.where(response_type: 'tow_type').order(Arel.sql('random()')).first.response
     pick_up_location_response = tempjobresponses.where(response_type: 'location').order(Arel.sql('random()')).first.response
     car_response = tempjobresponses.where(response_type: 'car').order(Arel.sql('random()')).first.response

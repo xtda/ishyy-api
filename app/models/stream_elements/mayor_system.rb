@@ -121,6 +121,31 @@ module StreamElements
       message
     end
 
+    def job_bonus(job_code, bonus)
+      return false unless mayor?
+      unless bonus.to_i.positive?
+        message = 'bonus must be a positive percent'
+        StreamElementsWrapper::Bot.new.message(message)
+        return true
+      end
+      attempt_set_bonus = StreamElements::JobSystem.new('xtda616', job_code).bonus(bonus.to_i)
+      if attempt_set_bonus
+        message = "The bonus for #{job_code} jobs has been set to #{bonus}%"
+        StreamElementsWrapper::Bot.new.message(message)
+        return true
+      end
+      false
+    end
+
+    def show_bonus
+      message = ''
+      a = Tempjob.all.pluck(:code, :mayor_bonus)
+      a.each do |job, bonus|
+        message += "Job: #{job} #{bonus} | "
+      end
+      message[0...-3]
+    end
+    
     def add_funds(amount)
       @mayor.current_funds += parse_amount(amount.to_s)
       return true if @mayor.save
