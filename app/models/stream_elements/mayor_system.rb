@@ -54,7 +54,7 @@ module StreamElements
     end
 
     def say_current_tax
-      message = "Tax is currently set to #{@mayor.mayor_tax}%"
+      message = "Tax is currently set to #{@mayor.current_tax}%"
       StreamElementsWrapper::Bot.new.message(message)
       message
     end
