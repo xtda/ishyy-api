@@ -54,7 +54,7 @@ module StreamElements
       total_pay = @player.tempjob.total_pay
 
       unless @player.tempjob.job_successful
-        message = @player.tempjob.say_fail_response(total_pay)
+        message = @player.tempjob.say_fail_response(total_pay, @player.name)
         @player_streamelements.take_points(total_pay)
         StreamElementsWrapper::Bot.new.message(message)
         @player.temp_job_last_claimed = Time.now
@@ -67,7 +67,7 @@ module StreamElements
         StreamElementsWrapper::Bot.new.message(message)
         return false
       end
-      message = @player.tempjob.say_response(total_pay)
+      message = @player.tempjob.say_response(total_pay, @player.name)
       @player_streamelements.give_points(total_pay)
       time = rand(4...10)
       @player.temp_job_last_claimed = time.minutes.from_now
