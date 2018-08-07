@@ -70,7 +70,7 @@ module StreamElements
       message = @player.tempjob.say_response(total_pay)
       @player_streamelements.give_points(total_pay)
       time = rand(4...10)
-      @player.temp_job_last_claimed = time.mintues.from_now
+      @player.temp_job_last_claimed = time.minutes.from_now
       @player.save
       StreamElementsWrapper::Bot.new.message(message)
       'job passed'
