@@ -5,7 +5,7 @@ module Api
         class TaxController < ApiController
 
           def show
-            mayor = StreamElements::MayorSystem.new('nil').current_tax
+            mayor = StreamElements::MayorSystem.new('nil').say_current_tax
             return success('success', 200) if mayor
             error!('failed', 422)
           end
