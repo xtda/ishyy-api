@@ -5,7 +5,7 @@ module Api
         class FundsController < ApiController
 
           def show
-            StreamElements::MayorSystem.new('nil').available_fund
+            StreamElements::MayorSystem.new('nil').say_current_funds
             success('okay', 200)
           end
 

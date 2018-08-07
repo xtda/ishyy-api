@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  response_sign: MyString
+  response_type: MyString
+  respone: MyText
+  tempjob: one
+
+two:
+  response_sign: MyString
+  response_type: MyString
+  respone: MyText
+  tempjob: two

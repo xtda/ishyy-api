@@ -104,6 +104,10 @@ module StreamElements
         StreamElementsWrapper::Bot.new.message(message)
         return false
       end
+      if to_points + @amount > 2_147_483_647
+        StreamElementsWrapper::Bot.new.message("#{to_name.name} can't have more than 2,147,483,647 potatoes!")
+        return 'over cap'
+      end
       to.give_points(amount)
       @mayor.current_funds -= amount.to_i
       return 'transfer failed' unless @mayor.save
@@ -118,14 +122,14 @@ module StreamElements
     end
 
     def add_funds(amount)
-      @mayor.current_funds += parse_amount(amount)
+      @mayor.current_funds += parse_amount(amount.to_s)
       return true if @mayor.save
       false
     end
 
     def take_funds(amount)
-      return false unless parse_amount(amount) < @mayor.current_funds
-      @mayor.current_funds -= parse_amount(amount)
+      return false unless parse_amount(amount.to_s) < @mayor.current_funds
+      @mayor.current_funds -= parse_amount(amount.to_s)
       return true if @mayor.save
       false
     end

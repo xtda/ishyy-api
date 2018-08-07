@@ -3,7 +3,6 @@ module Api
     module Streamelements
       module MayorSystem
         class CurrentController < ApiController
-          
           def index
             StreamElements::MayorSystem.new('nil').say_current_mayor
             success('okay', 200)

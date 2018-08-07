@@ -18,7 +18,12 @@ Rails.application.routes.draw do
           post '/tax/:caller/:tax', to: 'tax#update'
 
           post '/transfer/:caller/:to/:amount', to: 'transfer#update'
+        end
+        namespace :job_system do
+          post '/sign_on/:player/:job', to: 'sign_on#update'
+          post '/sign_off/:player', to: 'sign_off#update'
 
+          post '/work/:player', to: 'work#update'
         end
       end
     end

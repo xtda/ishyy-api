@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_06_110729) do
+ActiveRecord::Schema.define(version: 2018_08_07_072622) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -27,6 +27,15 @@ ActiveRecord::Schema.define(version: 2018_08_06_110729) do
     t.string "ref"
   end
 
+  create_table "jobdetails", force: :cascade do |t|
+    t.bigint "player_id"
+    t.bigint "tempjob_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["player_id"], name: "index_jobdetails_on_player_id"
+    t.index ["tempjob_id"], name: "index_jobdetails_on_tempjob_id"
+  end
+
   create_table "mayors", force: :cascade do |t|
     t.string "current_mayor", default: "xtda616"
     t.bigint "current_funds", default: 250000
@@ -41,6 +50,32 @@ ActiveRecord::Schema.define(version: 2018_08_06_110729) do
     t.datetime "updated_at", null: false
     t.string "mayor_vote"
     t.datetime "mayor_last_voted", default: "2018-08-03 11:16:23"
+    t.datetime "temp_job_last_claimed", default: "2018-08-04 07:25:50"
   end
 
+  create_table "tempjobresponses", force: :cascade do |t|
+    t.string "response_sign"
+    t.string "response_type"
+    t.text "response"
+    t.bigint "tempjob_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tempjob_id"], name: "index_tempjobresponses_on_tempjob_id"
+  end
+
+  create_table "tempjobs", force: :cascade do |t|
+    t.string "type"
+    t.string "code"
+    t.string "title"
+    t.integer "base_pay"
+    t.integer "limit"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "mayor_bonus", default: 0
+    t.index ["code"], name: "index_tempjobs_on_code", unique: true
+  end
+
+  add_foreign_key "jobdetails", "players"
+  add_foreign_key "jobdetails", "tempjobs"
+  add_foreign_key "tempjobresponses", "tempjobs"
 end

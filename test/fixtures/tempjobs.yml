@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  type: 
+  code: MyString
+  title: MyString
+  base_pay: 1
+  limit: 1
+
+two:
+  type: 
+  code: MyString
+  title: MyString
+  base_pay: 1
+  limit: 1
