@@ -4,11 +4,10 @@ module Api
       module MayorSystem
         class JobBonusController < ApiController
 
-          skip_before_action :authenticate_user
 
           def show
-            #StreamElements::MayorSystem.new('nil').available_fund
-            #success('okay', 200)
+            StreamElements::MayorSystem.new('nil').available_fund
+            success('okay', 200)
           end
 
           def update
