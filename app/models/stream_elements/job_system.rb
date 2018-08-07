@@ -25,7 +25,7 @@ module StreamElements
     end
 
     def bonus(bonus)
-      job = Job.find_by(code: @job_code)
+      job = Tempjob.find_by(code: @job_code)
       job.mayor_bonus = bonus
       return true if job.save
       false
