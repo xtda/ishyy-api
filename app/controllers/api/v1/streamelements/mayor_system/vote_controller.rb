@@ -8,7 +8,7 @@ module Api
           def update
             caller = params[:caller]
             vote = params[:vote]
-            mayor = StreamElements::MayorSystem.new(caller).attempt_vote(caller, vote)
+            mayor = StreamElements::MayorSystem.new(caller).attempt_vote(vote)
             return success('voted', 200) if mayor
             error!('vote failed', 422)
           end
