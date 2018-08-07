@@ -7,7 +7,11 @@ module StreamElements
     end
 
     def show_id
-      message = "Name: #{@caller.name}, potatoes: #{@caller_streamelements.points}, voted for: #{@caller.mayor_vote}, signed on as: #{@caller.tempjob.title}"
+      if @caller.tempjob
+        message = "Name: #{@caller.name}, potatoes: #{@caller_streamelements.points}, voted for: #{@caller.mayor_vote}, signed on as: #{@caller.tempjob.title}"
+      else
+        message = "Name: #{@caller.name}, potatoes: #{@caller_streamelements.points}, voted for: #{@caller.mayor_vote}"
+      end
       StreamElementsWrapper::Bot.new.message(message)
       message
     end
