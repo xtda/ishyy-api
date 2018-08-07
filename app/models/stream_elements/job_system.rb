@@ -46,7 +46,7 @@ module StreamElements
       return false unless @player.tempjob
       unless @player.temp_job_last_claimed < Time.now
         time_until = ((@player.temp_job_last_claimed - Time.now) / 60).to_i
-        message = "You can't claim for another #{time_until} minutes #{@player.name}"
+        message = "You can't work for another #{time_until} minutes #{@player.name}"
         StreamElementsWrapper::Bot.new.message(message)
         return false
       end
