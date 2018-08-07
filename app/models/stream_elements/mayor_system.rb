@@ -104,7 +104,7 @@ module StreamElements
         StreamElementsWrapper::Bot.new.message(message)
         return false
       end
-      if to_points + @amount > 2_147_483_647
+      if to_points + amount > 2_147_483_647
         StreamElementsWrapper::Bot.new.message("#{to_name.name} can't have more than 2,147,483,647 potatoes!")
         return 'over cap'
       end
