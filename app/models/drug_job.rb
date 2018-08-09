@@ -12,7 +12,7 @@ class DrugJob < Tempjob
   end
 
   def job_successful
-    a = [true, true, false, true, false, true, true, false].sample
+    a = [false, true, false, true, false, true, true, false].sample
     unless a
       @name.take_points(@total_pay)
       return say_fail_response
