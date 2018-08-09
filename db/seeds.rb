@@ -11,7 +11,7 @@ Mayor.find_or_create_by(id: 1)
 tow = TowJob.find_or_create_by(code: 'tow', title: 'Tow truck driver')
 tow.base_pay = 175
 tow.tempjobresponses.find_or_create_by(response_sign: 'positive', response_type: 'car', response: 'T20')
-tow.tempjobresponses.find_or_create_by(response_sign: 'positive', response_type: 'car', response: 'Pant')
+tow.tempjobresponses.find_or_create_by(response_sign: 'positive', response_type: 'car', response: 'Panto')
 tow.tempjobresponses.find_or_create_by(response_sign: 'positive', response_type: 'car', response: 'Adder')
 tow.tempjobresponses.find_or_create_by(response_sign: 'positive', response_type: 'car', response: 'Ambulance')
 tow.tempjobresponses.find_or_create_by(response_sign: 'positive', response_type: 'car', response: 'Granger')
