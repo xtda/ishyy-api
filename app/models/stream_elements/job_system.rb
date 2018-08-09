@@ -44,14 +44,17 @@ module StreamElements
     def attempt_job
       return false unless @player.tempjob
       unless @player.temp_job_last_claimed < Time.now
-        time_until = ((@player.temp_job_last_claimed - Time.now) / 60).to_i
-        message = "You can't work for another #{time_until} minutes #{@player.name}"
+        time_until = (@player.temp_job_last_claimed - Time.now)
+        message = "You can't work for another #{humanize(time_until)} #{@player.name}"
         StreamElementsWrapper::Bot.new.message(message)
         return message
       end
 
-      @player.tempjob.attempt_job(@player.name)
-      time = rand(2...8)
+      time = if @player.tempjob.attempt_job(@player.name)
+               rand(2...5)
+             else
+               0
+             end
       @player.temp_job_last_claimed = time.minutes.from_now
       @player.save
       'job passed'

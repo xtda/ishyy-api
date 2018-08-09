@@ -4,11 +4,11 @@ class DrugJob < Tempjob
 
   def say_response
     drug_type = tempjobresponses.where(response_sign: 'positive', response_type: 'drugs').order(Arel.sql('random()')).first.response
-    "#{@name.name}, you sold #{@drugs_sold} #{drug_type} at #{@sold_price} and made #{@total_pay} potatoes"
+    "#{@name.name}, you sold #{@drugs_sold} #{drug_type} at #{@sold_price} potatoes each and made #{@total_pay} potatoes"
   end
 
   def say_fail_response
-    "#{@name.name}, you got caught selling drugs the cops took all your cash you lost #{@total_pay}"
+    "#{@name.name}, you got caught selling drugs the cops seized your potatoes you lost #{@total_pay} potatoes"
   end
 
   def job_successful

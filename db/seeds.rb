@@ -60,7 +60,7 @@ taxi.tempjobresponses.find_or_create_by(response_sign: 'positive', response_type
 taxi.tempjobresponses.find_or_create_by(response_sign: 'positive', response_type: 'location', response: 'the pier to get a cream pie')
 taxi.tempjobresponses.find_or_create_by(response_sign: 'positive', response_type: 'location', response: 'the lifeinvader building')
 
-taxi.tempjobresponses.find_or_create_by(response_sign: 'negative', response_type: 'negative', response: 'Axed a question by Hannah and she stole')
+taxi.tempjobresponses.find_or_create_by(response_sign: 'negative', response_type: 'negative', response: 'You got axed a question by Hannah and she stole')
 taxi.tempjobresponses.find_or_create_by(response_sign: 'negative', response_type: 'negative', response: 'Daveo did a runner and you lost')
 taxi.tempjobresponses.find_or_create_by(response_sign: 'negative', response_type: 'negative', response: "You got held up by the 'The Black Bandit' he took your phone and ")
 taxi.tempjobresponses.find_or_create_by(response_sign: 'negative', response_type: 'negative', response: 'you got robbed at gun point')
