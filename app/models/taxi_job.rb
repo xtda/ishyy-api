@@ -3,9 +3,9 @@ class TaxiJob < Tempjob
   
   def say_response(total_pay, name)
     number_response = tempjobresponses.where(response_type: "number").order(Arel.sql('random()')).first.response
-    pick_up_location_response = tempjobresponses.where(response_type: "location").order(Arel.sql('random()')).first.response
-    tempjobresponses.connection.clear_query_cache
-    drop_off_location_response = tempjobresponses.where(response_type: "location").order(Arel.sql('random()')).first.response
+    locations = tempjobresponses.where(response_type: "location").order(Arel.sql('random()')).limit(2)
+    pick_up_location_response = locations.first.response
+    drop_off_location_response = locations.second.response
     "#{name}, you picked up #{number_response} from #{pick_up_location_response} and dropped them off at #{drop_off_location_response} you got paid #{total_pay} potatoes"
   end
 
@@ -14,6 +14,6 @@ class TaxiJob < Tempjob
   end
 
   def job_successful
-    [true, true, true, true, true, false, false, false].sample
+    [true, true, true, true, true, true, false, false].sample
   end
 end
