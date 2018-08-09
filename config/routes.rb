@@ -13,8 +13,10 @@ Rails.application.routes.draw do
 
           post '/vote/:caller/:vote', to: 'vote#update'
 
-          get '/funds', to: 'funds#show'
-          post '/funds/:caller/:amount', to: 'funds#update'
+          get '/funds', to: 'add_funds#show'
+          get '/funds/current', to: 'add_funds#index'
+          post '/funds/add/:caller/:amount', to: 'add_funds#update'
+          post '/funds/take/:caller/:amount', to: 'take_funds#update'
 
           get '/tax', to: 'tax#show'
           post '/tax/:caller/:tax', to: 'tax#update'

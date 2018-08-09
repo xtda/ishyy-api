@@ -2,7 +2,12 @@ module Api
   module V1
     module Streamelements
       module MayorSystem
-        class FundsController < ApiController
+        class AddFundsController < ApiController
+
+          def index
+            funds = StreamElements::MayorSystem.new('nil').current_funds
+            success(funds, 200)
+          end
 
           def show
             StreamElements::MayorSystem.new('nil').say_current_funds

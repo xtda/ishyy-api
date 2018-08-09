@@ -84,6 +84,10 @@ module StreamElements
       message
     end
 
+    def current_funds
+      @mayor.current_funds
+    end
+
     def transfer_funds(to, amount)
       return false unless mayor?
       amount = parse_amount(amount)
