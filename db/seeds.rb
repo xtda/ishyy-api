@@ -66,7 +66,7 @@ taxi.tempjobresponses.find_or_create_by(response_sign: 'negative', response_type
 taxi.tempjobresponses.find_or_create_by(response_sign: 'negative', response_type: 'negative', response: 'you got robbed at gun point')
 taxi.tempjobresponses.find_or_create_by(response_sign: 'negative', response_type: 'negative', response: 'you crashed into a police car and got fined')
 
-drug = DrugJob.find_or_create_by(code: 'drugs', title: 'Drug dealer')
+drug = DrugJob.find_or_create_by(code: 'dealer', title: 'Drug dealer')
 drug.base_pay = 0
 drug.tempjobresponses.find_or_create_by(response_sign: 'positive', response_type: 'drugs', response: 'of crystal meth')
 drug.tempjobresponses.find_or_create_by(response_sign: 'positive', response_type: 'drugs', response: 'joints')
