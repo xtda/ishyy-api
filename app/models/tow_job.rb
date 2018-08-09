@@ -18,7 +18,7 @@ class TowJob < Tempjob
       @name.take_points(@total_pay)
       return say_fail_response
     end
-    take_mayor_funds(@total_pay)
+    return false unless take_mayor_funds(@total_pay)
     @name.give_points(@total_pay)
     say_response
   end
@@ -27,7 +27,7 @@ class TowJob < Tempjob
     @total_pay = total_pay
     @name = StreamElementsWrapper::Points.new(name)
     message = job_successful
-    StreamElementsWrapper::Bot.new.message(message)
+    StreamElementsWrapper::Bot.new.message(message) if message
     true
   end
 end

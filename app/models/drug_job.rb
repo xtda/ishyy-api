@@ -17,7 +17,7 @@ class DrugJob < Tempjob
       @name.take_points(@total_pay)
       return say_fail_response
     end
-    take_mayor_funds(@total_pay)
+    return false unless take_mayor_funds(@total_pay)
     @name.give_points(@total_pay)
     say_response
   end
@@ -27,12 +27,12 @@ class DrugJob < Tempjob
   end
 
   def attempt_job(name)
-    @drugs_sold = rand(1...10)
-    @sold_price = rand(25..250)
+    @drugs_sold = rand(1...40)
+    @sold_price = rand(5...100)
     @total_pay = total_pay
     @name = StreamElementsWrapper::Points.new(name)
     message = job_successful
-    StreamElementsWrapper::Bot.new.message(message)
+    StreamElementsWrapper::Bot.new.message(message) if message
     true
   end
 end
