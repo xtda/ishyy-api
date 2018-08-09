@@ -68,6 +68,6 @@ drug = DrugJob.find_or_create_by(code: 'drugs', title: 'Drug dealer')
 drug.base_pay = 0
 drug.tempjobresponses.find_or_create_by(response_sign: 'positive', response_type: 'drugs', response: 'of crystal meth')
 drug.tempjobresponses.find_or_create_by(response_sign: 'positive', response_type: 'drugs', response: 'joints')
-drug.tempjobresponses.find_or_create_by(response_sign: 'positive', response_type: 'drugs', response: 'of week')
-drug.tempjobresponses.find_or_create_by(response_sign: 'positive', response_type: 'drugs', response: 'ounce of cocaine')
+drug.tempjobresponses.find_or_create_by(response_sign: 'positive', response_type: 'drugs', response: 'gram of weed')
+drug.tempjobresponses.find_or_create_by(response_sign: 'positive', response_type: 'drugs', response: 'ounces of cocaine')
 drug.tempjobresponses.find_or_create_by(response_sign: 'positive', response_type: 'drugs', response: 'ecstasy tablets')
