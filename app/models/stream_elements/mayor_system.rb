@@ -41,7 +41,7 @@ module StreamElements
       vote = StreamElementsWrapper::Points.new(parse_name(vote))
       vote_valid = vote.points
       unless vote_valid
-        message = "User #{vote.name} not found #{voter}"
+        message = "User #{vote.name} not found #{@caller.name}"
         StreamElementsWrapper::Bot.new.message(message)
         return message
       end
