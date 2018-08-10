@@ -15,6 +15,7 @@ class DrugJob < Tempjob
     a = [true, true, false, true, false, true, true, false].sample
     unless a
       @name.take_points(@total_pay)
+      StreamElements::MayorSystem.new('nil').add_funds(@total_pay)
       return say_fail_response
     end
     return false unless take_mayor_funds(@total_pay)
@@ -28,7 +29,7 @@ class DrugJob < Tempjob
 
   def attempt_job(name)
     @drugs_sold = rand(1...40)
-    @sold_price = rand(5...100)
+    @sold_price = rand(5...100) 
     @total_pay = total_pay
     @name = StreamElementsWrapper::Points.new(name)
     message = job_successful
