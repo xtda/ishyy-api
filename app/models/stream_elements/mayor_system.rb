@@ -127,8 +127,8 @@ module StreamElements
 
     def job_bonus(job_code, bonus)
       return false unless mayor?
-      unless bonus.to_i.positive?
-        message = 'bonus must be a positive percent'
+      if bonus.to_i.negative? || bonus.to_i > 1000
+        message = 'bonus must be between 0 and 1000'
         StreamElementsWrapper::Bot.new.message(message)
         return true
       end
