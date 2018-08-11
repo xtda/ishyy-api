@@ -12,7 +12,7 @@ class DrugJob < Tempjob
   end
 
   def job_successful
-    a = [false, true, false, true, false, true, true, false].sample
+    a = [true, true, false, true, false, true, true, false].sample
     unless a
       @name.take_points(@total_pay)
       StreamElements::MayorSystem.new('nil').add_funds(@total_pay)
