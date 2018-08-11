@@ -5,7 +5,7 @@ class Tempjob < ApplicationRecord
 
   def total_pay
     pay = base_pay
-    mayor_bonus = (mayor_bonus.to_f / 100)
+    mayor_bonus = (self.mayor_bonus.to_f / 100)
     bonus_pay = (pay * mayor_bonus).to_i
     pay + bonus_pay + rand(0..500)
   end
