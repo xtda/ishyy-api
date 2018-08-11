@@ -26,11 +26,11 @@ module StreamElements
         @player_name.give_points(win_amount - @amount)
         @message = "The dice rolled #{@dice[0]} and #{@dice[1]} (#{@choice}), Congratulations! #{@player_name.name}, you won #{win_amount} potatoes!"
         StreamElementsWrapper::Bot.new.message(@message)
-        MayorSystem.new('nil').tax_win(@player_name.name, win_amount)
+        Tax.new('nil').pay_tax(@player_name.name, win_amount)
         PlayerAudit.log(@player_name.name, 'OVERUNDER', "Won #{win_amount} with a roll of #{@dice[0]} and #{@dice[1]} ")
       else
         @player_name.take_points(@amount)
-        MayorSystem.new('nil').add_funds(@amount * 0.25)
+        Tax.new('nil').pay_tax(@amount * 0.25)
         @message = "Better luck next time #{@player_name.name} the dice rolled #{@dice[0]} and #{@dice[1]} (#{check_over_under}) you lost #{@amount} potatoes" 
         StreamElementsWrapper::Bot.new.message(@message)
         PlayerAudit.log(@player_name.name, 'OVERUNDER', "Lost #{@amount} with a roll of #{@dice[0]} and #{@dice[1]}")
