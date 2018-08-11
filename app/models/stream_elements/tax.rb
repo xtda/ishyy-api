@@ -3,7 +3,7 @@ module StreamElements
     def initialize(caller, amount)
       @caller = StreamElementsWrapper::Points.new(parse_name(caller))
       @caller_points = @caller.points
-      @amount = parse_amount(amount)
+      @amount = parse_amount(amount.to_s)
       @mayor = Mayor.first
     end
 
