@@ -30,7 +30,8 @@ module StreamElements
         PlayerAudit.log(@player_name.name, 'OVERUNDER', "Won #{win_amount} with a roll of #{@dice[0]} and #{@dice[1]} ")
       else
         @player_name.take_points(@amount)
-        Tax.new(@player_name.name, @amount * 0.25).pay_tax
+        tax = (@amount * 0.25).to_i
+        Tax.new(@player_name.name, tax).pay_tax
         @message = "Better luck next time #{@player_name.name} the dice rolled #{@dice[0]} and #{@dice[1]} (#{check_over_under}) you lost #{@amount} potatoes" 
         StreamElementsWrapper::Bot.new.message(@message)
         PlayerAudit.log(@player_name.name, 'OVERUNDER', "Lost #{@amount} with a roll of #{@dice[0]} and #{@dice[1]}")
