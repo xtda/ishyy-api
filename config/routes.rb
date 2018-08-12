@@ -6,7 +6,8 @@ Rails.application.routes.draw do
         post '/overunder/:player/:choice/:amount', to: 'overunder#update'
         post '/tax/pay_tax/:caller/:amount', to: 'pay_tax#update'
         get '/player/:caller', to: 'player_id#show'
-
+        get '/weather/:location', to: 'weather#show'
+        
         namespace :mayor_system do
           get '/current', to: 'current#index'
           get '/current/name', to: 'current#show'

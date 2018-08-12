@@ -11,6 +11,7 @@ module StreamElements
 
       message = "Weather for #{data['name']} (#{data['sys']['country']}) is #{data['main']['temp']} C (#{c_to_f(data['main']['temp'])} F), with a humidity of #{data['main']['temp']}%"
       StreamElementsWrapper::Bot.new.message(message)
+      true
     end
 
     private
