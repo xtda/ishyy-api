@@ -1,6 +1,6 @@
 class TowJob < Tempjob
   has_many :tempjobresponses, foreign_key: 'tempjob_id'
-  
+
   def say_response
     tow_type_response = tempjobresponses.where(response_type: 'tow_type').order(Arel.sql('random()')).first.response
     pick_up_location_response = tempjobresponses.where(response_type: 'location').order(Arel.sql('random()')).first.response
