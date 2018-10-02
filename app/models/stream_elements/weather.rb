@@ -9,7 +9,7 @@ module StreamElements
       host = "http://api.openweathermap.org/data/2.5/weather?units=metric&appid=#{api_key}&q=#{@location}"
       data = get_request(host)
 
-      message = "Weather for #{data['name']} (#{data['sys']['country']}) is #{data['main']['temp']} C (#{c_to_f(data['main']['temp'])} F), with a humidity of #{data['main']['temp']}%"
+      message = "Weather for #{data['name']} (#{data['sys']['country']}) is #{data['main']['temp']} C (#{c_to_f(data['main']['temp'])} F), with a humidity of #{data['main']['humidity']}%"
       StreamElementsWrapper::Bot.new.message(message)
       true
     end

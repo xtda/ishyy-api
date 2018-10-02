@@ -1,6 +1,6 @@
 module StreamElements
   class JobSystem < StreamElements
-    
+
     def initialize(player, job_code)
       @player ||= Player.find_or_create_by(name: parse_name(player))
       @job_code = job_code
